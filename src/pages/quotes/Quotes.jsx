@@ -29,23 +29,46 @@ const Quotes = () => {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
   const [val, setVal] = useState(0);
+   const [advice, setAdvice] = useState("");
 
   useEffect(() => {
     fetchQ();
   }, []);
 
   async function fetchQ() {
+    setVal(parseInt(Math.random() * 10));
+    
+     const res2 = await fetch("https://api.adviceslip.com/advice");
+    const data2 = await res2.json();
+     setAdvice(data2.slip.advice);
+    
+    
+//     for quotes below
+    
+    
+    
     const res = await fetch("https://api.quotable.io/random");
+   
     const data = await res.json();
 
     console.log(data);
 
     setText(data.content);
     setAuthor(data.author);
-    setVal(parseInt(Math.random() * 10));
+    
   }
 
   return (
+  <>  <div
+      className="quotes-conatiner"
+      style={{ backgroundColor: colors[{ val }] }}
+    >
+       <div className="quote-box">
+          <div className="quote-text">{advice}</div>
+      </div>
+</div>
+    
+    
     <div
       className="quotes-conatiner"
       style={{ backgroundColor: colors[{ val }] }}
@@ -59,7 +82,7 @@ const Quotes = () => {
           </button>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 
