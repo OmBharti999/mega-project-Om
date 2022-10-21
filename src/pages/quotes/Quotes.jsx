@@ -22,29 +22,32 @@ var colors = [
   "#6428e1",
   "#ffaf28",
   "#e10028",
-  "#000000"
+  "#000000",
 ];
 
 const Quotes = () => {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
-
-  useEffect(() => {
-    fetchQ();
-  }, []);
+  const [val, setVal] = useState(0);
 
   async function fetchQ() {
     const res = await fetch("https://api.quotable.io/random");
     const data = await res.json();
+    console.log(data);
 
     setText(data.content);
     setAuthor(data.author);
-    document.getElementById("body").style.backgroundColor =
-      colors[parseInt(Math.random() * 10)];
+    setVal(parseInt(Math.random() * 10));
   }
+  useEffect(() => {
+    fetchQ();
+  }, []);
 
   return (
-    <div className="quotes-conatiner" id="body">
+    <div
+      className="quotes-conatiner"
+      style={{ backgroundColor: colors[{ val }] }}
+    >
       <div className="quote-box">
         <div className="quote-text">{text}</div>
         <div className="quote-author">{author}</div>
