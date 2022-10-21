@@ -1,0 +1,17 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background: black;
+}
+* {
+  margin: 0;
+  padding: 0;
+
+/* middle */
+.middle {
+  color: red;
+  padding-left: 20vw;
+  display: flex;
+}
+.middle {
+}
