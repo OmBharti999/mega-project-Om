@@ -17,7 +17,7 @@ var colors = [
   "#BDBB99",
   "#77B1A9",
   "#73A857",
-  "	#ffd966",
+  "#ffd966",
   "#2000e1",
   "#6428e1",
   "#ffaf28",
@@ -30,18 +30,20 @@ const Quotes = () => {
   const [author, setAuthor] = useState("");
   const [val, setVal] = useState(0);
 
+  useEffect(() => {
+    fetchQ();
+  }, []);
+
   async function fetchQ() {
     const res = await fetch("https://api.quotable.io/random");
     const data = await res.json();
+
     console.log(data);
 
     setText(data.content);
     setAuthor(data.author);
     setVal(parseInt(Math.random() * 10));
   }
-  useEffect(() => {
-    fetchQ();
-  }, []);
 
   return (
     <div
