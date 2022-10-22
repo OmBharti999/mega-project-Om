@@ -9,7 +9,7 @@ export default function Home() {
     <div className={theme ? "middle" : "middle night"}>
       <Link to="/todo">todo</Link>
       <br />
-      <Link to="/notes">quotes</Link>
+      <Link to="/quotes">quotes</Link>
       <br />
       <Link to="/tip-calculator">tip</Link>
       <br />
